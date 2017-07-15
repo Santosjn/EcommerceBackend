@@ -27,7 +27,7 @@ public class ProductDAO {
 		return clienteList;
 	}
 
-	public void addProduct(Product p) {
+	public Product addProduct(Product p) {
 
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -42,7 +42,7 @@ public class ProductDAO {
 		} finally {
 			session.close();
 		}
-
+		return p;
 	}
 
 	public void removeProduct(Product p) {

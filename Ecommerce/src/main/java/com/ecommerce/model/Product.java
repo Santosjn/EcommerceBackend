@@ -61,9 +61,9 @@ public class Product implements Serializable {
 		this.valor = valor;
 	}
 
-	public void save() {
+	public Product save() {
 		ProductDAO productDao = new ProductDAO();
-		productDao.addProduct(this);
+		return productDao.addProduct(this);
 	}
 
 	public void delete() {
@@ -75,7 +75,7 @@ public class Product implements Serializable {
 		ProductDAO productDao = new ProductDAO();
 		productDao.updateProduct(this);
 	}
-	
+
 	public List listProducts() {
 		String query = "select * from product order by product.id asc";
 		List productList = queryProducts(query);
@@ -89,14 +89,13 @@ public class Product implements Serializable {
 
 		return queryResult;
 	}
-	
+
 	public Product find(Integer id) {
-		System.out.println("id passed " + id);
 		Product p = null;
 		ProductDAO productDao = new ProductDAO();
 		p = productDao.findById(id);
-		
-		return p;		
+
+		return p;
 	}
 
 	@Override

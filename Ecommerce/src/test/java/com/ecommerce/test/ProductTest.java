@@ -45,8 +45,6 @@ public class ProductTest {
 		p.delete();
 
 		Product productFound = new Product();
-		System.out.println(productFound.find(p.getId()));
-
 		assertEquals(null, productFound.find(p.getId()));
 	}
 
