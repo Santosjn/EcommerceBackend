@@ -89,6 +89,15 @@ public class Product implements Serializable {
 
 		return queryResult;
 	}
+	
+	public Product find(Integer id) {
+		System.out.println("id passed " + id);
+		Product p = null;
+		ProductDAO productDao = new ProductDAO();
+		p = productDao.findById(id);
+		
+		return p;		
+	}
 
 	@Override
 	public int hashCode() {

@@ -99,4 +99,22 @@ public class ProductDAO {
 
 	}
 
+	public Product findById(Integer id) {
+		if (id == null) {
+			return null;
+		}
+		Product p = null;
+
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			p = (Product) session.get(Product.class, id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return p;
+	}
+
 }
