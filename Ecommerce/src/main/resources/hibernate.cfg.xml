@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- MySql -->
+
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
+			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/maindb</property> 
+			<property name="hibernate.connection.username">root</property> <property 
+			name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property> <property 
+			name="hibernate.hbm2ddl.auto">update</property> <mapping class="com.ecommerce.model.Product"/> -->
+
+		<!-- Heroku Embedded PostGreSql -->
+
+		<!-- <property name="hibernate.connection.driver_class">org.postgresql.Driver</property> 
+			<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-163-249-168.compute-1.amazonaws.com:5432/d2p4n3ss14sdf8</property> 
+			<property name="hibernate.connection.username">ucnguqrsscqkiz</property> 
+			<property name="hibernate.connection.password">S-fb6w4rw1x12n_teepV3lNOve</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property> 
+			<property name="hibernate.hbm2ddl.auto">update</property> <mapping class="com.ecommerce.model.Product"/> -->
+
+		<!-- PostGreSql -->
+
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost/maindb</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">postgres</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<mapping class="com.ecommerce.model.Product" />		
+
+	</session-factory>
+
+</hibernate-configuration>
