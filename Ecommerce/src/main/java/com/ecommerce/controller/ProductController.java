@@ -11,24 +11,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.model.Product;
+import com.ecommerce.service.ProductService;
 
 @RestController
 public class ProductController {
 
 	@RequestMapping(value = "/product/new", method = RequestMethod.POST)
-	public Product saveProduct(@RequestBody Product params) {
-		Product product = new Product();
-		product.setNome(params.getNome());
-		product.setValor(params.getValor());
-		product.save();
-
-		return product;
+	public Product saveProduct(@RequestBody Product product_params) {
+		ProductService service = new ProductService();
+		return service.save(product_params);
 	}
 
 	@RequestMapping(value = "/product/get", method = RequestMethod.GET)
 	public ResponseEntity<Product> findProduct(@RequestParam(value = "id") Integer id) {
+		ProductService service = new ProductService();
 		Product productFound = null;
-		productFound = new Product().find(id);
+		productFound = service.find(id);
 
 		if (productFound == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -39,36 +37,34 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/list", method = RequestMethod.GET)
 	public List<Product> listProducts() {
-		Product product = new Product();
-		return product.listProducts();
+		ProductService service = new ProductService();
+		return service.listProducts();
 	}
 
 	@RequestMapping(value = "/product/update", method = RequestMethod.PUT)
-	public ResponseEntity<Product> updateProduct(@RequestBody Product params) {
-		Product product = new Product();
+	public ResponseEntity<Product> updateProduct(@RequestBody Product product_params) {
+		ProductService service = new ProductService();
 		Product productFound = null;
-		productFound = product.find(params.getId());
+		productFound = service.find(product_params.getId());
 		if (productFound == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 
-		productFound.setNome(params.getNome());
-		productFound.setValor(params.getValor());
-		productFound.update();
+		service.update(product_params);
 
-		return new ResponseEntity<Product>(productFound, HttpStatus.OK);
+		return new ResponseEntity<Product>(product_params, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/product/delete", method = RequestMethod.DELETE)
 	public ResponseEntity<Product> deleteProduct(@RequestParam(value = "id") Integer id) {
-		Product product = new Product();
+		ProductService service = new ProductService();
 		Product productFound = null;
 
-		productFound = product.find(id);
+		productFound = service.find(id);
 		if (productFound == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
-		productFound.delete();
+		service.delete(productFound);
 		return new ResponseEntity<Product>(productFound, HttpStatus.OK);
 	}
 

@@ -52,43 +52,6 @@ public class Product implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Product save() {
-		ProductDAO productDao = new ProductDAO();
-		return productDao.addProduct(this);
-	}
-
-	public void delete() {
-		ProductDAO productDao = new ProductDAO();
-		productDao.removeProduct(this);
-	}
-
-	public void update() {
-		ProductDAO productDao = new ProductDAO();
-		productDao.updateProduct(this);
-	}
-
-	public List listProducts() {
-		String query = "select * from product order by product.id asc";
-		List productList = queryProducts(query);
-
-		return productList;
-	}
-
-	public List queryProducts(String query) {
-		ProductDAO productDao = new ProductDAO();
-		List queryResult = productDao.queryProduct(query);
-
-		return queryResult;
-	}
-
-	public Product find(Integer id) {
-		Product p = null;
-		ProductDAO productDao = new ProductDAO();
-		p = productDao.findById(id);
-
-		return p;
-	}
-
 	public Product() {
 	}
 
