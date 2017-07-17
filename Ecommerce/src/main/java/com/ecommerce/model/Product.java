@@ -52,15 +52,6 @@ public class Product implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Product() {
-	}
-
-	public Product(String nome, Float valor) {
-		super();
-		this.nome = nome;
-		this.valor = valor;
-	}
-
 	public Product save() {
 		ProductDAO productDao = new ProductDAO();
 		return productDao.addProduct(this);
@@ -96,6 +87,15 @@ public class Product implements Serializable {
 		p = productDao.findById(id);
 
 		return p;
+	}
+
+	public Product() {
+	}
+
+	public Product(String nome, Float valor) {
+		super();
+		this.nome = nome;
+		this.valor = valor;
 	}
 
 	@Override
