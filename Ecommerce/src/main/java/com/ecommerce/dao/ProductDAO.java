@@ -14,18 +14,6 @@ public class ProductDAO {
 
 	private Session session;
 	private Transaction transaction;
-	private List<Product> clienteList;
-
-	public List<Product> getClienteList() {
-		session = HibernateUtil.getSessionFactory().openSession();
-		transaction = session.beginTransaction();
-
-		Criteria criteria = session.createCriteria(Product.class);
-		this.clienteList = criteria.list();
-
-		session.close();
-		return clienteList;
-	}
 
 	public Product addProduct(Product p) {
 
