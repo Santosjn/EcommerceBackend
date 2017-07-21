@@ -7,7 +7,6 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.ecommerce.model.Product;
 import com.ecommerce.model.ShoppingCart;
 import com.ecommerce.util.HibernateUtil;
 
@@ -15,7 +14,6 @@ public class ShoppingCartDAO {
 
 	private Session session;
 	private Transaction transaction;
-	private List<Product> clienteList;
 
 	public List queryShoppingCart(String sql) {
 
@@ -52,6 +50,41 @@ public class ShoppingCartDAO {
 			session.close();
 		}
 		return sc;
+	}
+
+	public ShoppingCart findById(Integer id) {
+		if (id == null) {
+			return null;
+		}
+		ShoppingCart sc = null;
+
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			sc = (ShoppingCart) session.get(ShoppingCart.class, id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return sc;
+	}
+
+	public void removeShoppingCart(ShoppingCart sc) {
+
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+
+			session.delete(sc);
+			transaction.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
 	}
 
 }

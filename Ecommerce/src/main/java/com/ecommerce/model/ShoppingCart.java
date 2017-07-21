@@ -60,11 +60,6 @@ public class ShoppingCart {
 		super();
 		this.produto = produto;
 		this.quantidade = quantidade;
-	}
-
-	@Override
-	public String toString() {
-		return "ShoppingCart [id=" + id + ", produto=" + produto + ", quantidade=" + quantidade + "]";
-	}
+	}	
 
 }

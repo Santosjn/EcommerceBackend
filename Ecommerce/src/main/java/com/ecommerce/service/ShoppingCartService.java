@@ -21,8 +21,8 @@ public class ShoppingCartService {
 	}
 
 	public List shoppingCartItems() {
-		String query = "select p.nome, p.valor, sc.quantidade\r\n" + "from shopping_cart sc  \r\n"
-				+ "join product p on p.id = sc.product_id \r\n" + "order by sc.id asc";
+		String query = "select p.nome, p.valor, sc.id as shopping_cart_id, sc.quantidade\r\n"
+				+ "from shopping_cart sc \r\n" + "join product p on p.id = sc.product_id \r\n" + "order by sc.id asc";
 		List itemList = queryShoppingCartItems(query);
 
 		return itemList;
@@ -33,6 +33,18 @@ public class ShoppingCartService {
 		List queryResult = shoppingCartDAO.queryShoppingCart(query);
 
 		return queryResult;
+	}
+
+	public ShoppingCart find(Integer id) {
+		ShoppingCart sc = null;
+		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+		sc = shoppingCartDAO.findById(id);		
+		return sc;
+	}
+
+	public void delete(ShoppingCart sc) {
+		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+		shoppingCartDAO.removeShoppingCart(sc);
 	}
 
 }
