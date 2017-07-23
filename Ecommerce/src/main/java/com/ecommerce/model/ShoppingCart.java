@@ -19,7 +19,7 @@ public class ShoppingCart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "product_id")
 	private Product produto;
 

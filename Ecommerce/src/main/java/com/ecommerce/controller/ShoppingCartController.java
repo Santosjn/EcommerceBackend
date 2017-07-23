@@ -42,7 +42,7 @@ public class ShoppingCartController {
 		}
 
 		service.delete(sc_found);
-		return new ResponseEntity<ShoppingCart>(HttpStatus.OK);
+		return new ResponseEntity<ShoppingCart>(sc_found, HttpStatus.OK);
 
 	}
 
